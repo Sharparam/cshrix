@@ -17,6 +17,8 @@ environment:
     secure: e8iNzoDZPYnMxXyMXEMSbpklWMEG5/giUJxbVI0lLGzGw1ZalCyzrtq/jPY2FoEz
   CODECOV_TOKEN:
     secure: ONofRaoIVq9jofNbidVY+RO4eLrTvx1wImi0Y9BliB5kti0pTaIsVg2LQ8DfKktR
+  NUGET_API_KEY:
+    secure: yn2slwHpulkNvVaAlGV1pBYNOdP53unz9GjGn4+nyHNpDbqu5mCu8Y0eH9nZybhU
 
 cache:
   - tools -> build.cake
@@ -61,6 +63,13 @@ deploy:
     secure: pAZTT5H8qYKg6X1Kf+1YsiaxoLrkyCF0quZOFyfB+9k3Upab4axLVLMBNFdBoGnI
   artifact: NuGet,Archive,OpenCover,Coverage
   draft: true
+  on:
+    appveyor_repo_tag: true
+- provider: NuGet
+  name: production
+  api_key:
+    secure: yn2slwHpulkNvVaAlGV1pBYNOdP53unz9GjGn4+nyHNpDbqu5mCu8Y0eH9nZybhU
+  artifact: NuGet
   on:
     appveyor_repo_tag: true
 

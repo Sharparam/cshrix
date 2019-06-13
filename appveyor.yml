@@ -1,0 +1,68 @@
+image: Visual Studio 2017
+
+version: '{build}'
+
+pull_requests:
+  do_not_increment_build_number: true
+
+nuget:
+  disable_publish_on_pr: true
+
+environment:
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  github_access_token:
+    secure: pAZTT5H8qYKg6X1Kf+1YsiaxoLrkyCF0quZOFyfB+9k3Upab4axLVLMBNFdBoGnI
+  COVERALLS_REPO_TOKEN:
+    secure: e8iNzoDZPYnMxXyMXEMSbpklWMEG5/giUJxbVI0lLGzGw1ZalCyzrtq/jPY2FoEz
+  CODECOV_TOKEN:
+    secure: ONofRaoIVq9jofNbidVY+RO4eLrTvx1wImi0Y9BliB5kti0pTaIsVg2LQ8DfKktR
+
+cache:
+  - tools -> build.cake
+  - C:\ProgramData\chocolatey\bin -> build.cake
+  - C:\ProgramData\chocolatey\lib -> build.cake
+  - '%USERPROFILE%\.nuget\packages -> **\*.csproj'
+
+init:
+  - git config --global user.name "AppVeyor CI"
+  - git config --global user.email "ci@appveyor.com"
+  - git config --global credential.helper store
+  - ps: Add-Content "$HOME\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
+
+install:
+  - git config --global user.name "AppVeyor CI"
+  - git config --global user.email "ci@appveyor.com"
+  - dotnet tool install -g Cake.Tool --version 0.33.0
+  - choco install docfx -y --version 2.42.3
+
+build_script:
+- ps: dotnet-cake --target="AppVeyor" --cover
+
+after_build:
+- ps: .\appveyor\deploy-docs.ps1
+
+test: off
+
+artifacts:
+- path: .\artifacts\**\*.nupkg
+  name: NuGet
+- path: .\artifacts\**\*.zip
+  name: Archive
+- path: .\artifacts\opencover-results.xml
+  name: OpenCover
+- path: .\artifacts\coverage-report
+  name: Coverage
+
+deploy:
+- provider: GitHub
+  description: Automatically created by AppVeyor.
+  auth_token:
+    secure: pAZTT5H8qYKg6X1Kf+1YsiaxoLrkyCF0quZOFyfB+9k3Upab4axLVLMBNFdBoGnI
+  artifact: NuGet,Archive,OpenCover,Coverage
+  draft: true
+  on:
+    appveyor_repo_tag: true
+
+notifications:
+- provider: GitHubPullRequest

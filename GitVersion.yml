@@ -1,0 +1,15 @@
+assembly-versioning-scheme: MajorMinorPatchTag
+mode: ContinuousDelivery
+branches:
+  develop:
+    tag: alpha
+  feature: {}
+  hotfix: {}
+  master:
+    tag: ci
+  pull-request:
+    tag: pr
+  release:
+    tag: beta
+ignore:
+  sha: []

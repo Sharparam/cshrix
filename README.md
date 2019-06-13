@@ -2,6 +2,7 @@
 
 [![MPL 2.0 License][mpl-badge]][mpl]
 [![Latest GitHub release][ghreleasebadge]][ghrelease]
+[![NuGet version][ngverbadge]][ng]
 
 | [Master][master] | [![Build status][appveyor-master-badge]][appveyor-master-status] | [![TravisCI Status][travis-master-badge]][travis-master-status] | [![Test status][test-master-badge]][test-master-status] | [![Coverage][coveralls-master-badge]][coveralls-master] | [![Codecov coverage][codecov-master-badge]][codecov-master] | [![CodeFactor][codefactor-master-badge]][codefactor-master] |
 |-|-|-|-|-|-|-|
@@ -101,6 +102,8 @@ a [PR][] and update this section.
 
 [ghrelease]: https://github.com/Sharparam/cshrix/releases
 [ghreleasebadge]: https://img.shields.io/github/release/Sharparam/cshrix.svg?logo=github
+[ng]: https://www.nuget.org/packages/Cshrix
+[ngverbadge]: https://img.shields.io/nuget/v/Cshrix.svg
 
 [appveyor-develop-status]: https://ci.appveyor.com/project/Sharparam/cshrix/branch/develop
 [appveyor-develop-badge]: https://ci.appveyor.com/api/projects/status/s7o8vwq4udo1iudk/branch/develop?svg=true

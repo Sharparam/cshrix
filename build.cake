@@ -58,7 +58,6 @@ var coverageResultsFile = System.IO.Path.Combine(artifactDir, "opencover-results
 var slnName = Argument("slnName", "Cshrix");
 
 var solutionFile = System.IO.Path.Combine(solutionDir, $"{slnName}.sln");
-var dockerImageName = $"{dockerRegistry}/{dockerName}";
 var isDevelop = false;
 
 GitVersion version = null;

@@ -2,7 +2,6 @@
 
 [![MPL 2.0 License][mpl-badge]][mpl]
 [![Latest GitHub release][ghreleasebadge]][ghrelease]
-[![Docker image][docker-badge]][docker]
 
 | [Master][master] | [![Build status][appveyor-master-badge]][appveyor-master-status] | [![TravisCI Status][travis-master-badge]][travis-master-status] | [![Test status][test-master-badge]][test-master-status] | [![Coverage][coveralls-master-badge]][coveralls-master] | [![Codecov coverage][codecov-master-badge]][codecov-master] | [![CodeFactor][codefactor-master-badge]][codefactor-master] |
 |-|-|-|-|-|-|-|
